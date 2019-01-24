@@ -1,0 +1,15 @@
+# cat .gitignore
+*.xml
+*.iml
+.idea
+*.log
+/env
+env
+/Lib
+Lib
+Include
+/Include
+Scripts
+/Scripts
+/tcl
+tcl
