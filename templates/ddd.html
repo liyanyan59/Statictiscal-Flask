@@ -60,7 +60,7 @@
                 }
 
 				content.innerHTML = res;
-		        <!--window.open('http://124.173.70.94/files/'+result+'.zip');-->
+		        window.open('http://124.173.70.94/download/files/'+res+'.zip');
 
 			}else{
 				alert('请在input输入框中填点东西');
@@ -71,19 +71,19 @@
                     return daemonstatus();
                 }
 
-                <!--$.ajax({-->
-                    <!--url: "http://124.173.70.94:6800/schedule.json",-->
-                    <!--type:"POST",-->
-                    <!--data:param,-->
-                    <!--success: function(response){-->
-                        <!--console.log(response)-->
-                        <!--//if(callback)callback(response,param,tempData);-->
-                    <!--},-->
-                    <!--error: function(err){-->
-                        <!--console.log(err)-->
-                        <!--//if(failure)failure(err);-->
-                    <!--},-->
-                <!--});-->
+                $.ajax({
+                    url: "http://124.173.70.94:6800/schedule.json",
+                    type:"POST",
+                    data:param,
+                    success: function(response){
+                        console.log(response)
+                        //if(callback)callback(response,param,tempData);
+                    },
+                    error: function(err){
+                        console.log(err)
+                        //if(failure)failure(err);
+                    },
+                });
             }
 	</script>
 </body>
