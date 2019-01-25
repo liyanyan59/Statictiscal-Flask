@@ -22,5 +22,5 @@ def download_file(filepath):
 
 
 if __name__ == '__main__':
-    app.run()
-    # app.run('0.0.0.0')
+    # app.run()
+    app.run('0.0.0.0')
