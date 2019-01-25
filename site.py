@@ -10,14 +10,6 @@ from flask import Flask, render_template, send_from_directory, make_response, se
 
 app = Flask(__name__)
 
-MyFolder = '/static/files/'
-pattern = '*.zip'
-
-os.chdir(MyFolder)
-for fname in glob.glob(pattern):
-    if os.path.isfile(fname):
-        key = fname.decode('cp936')
-
 
 @app.route('/')
 def hello_world():
