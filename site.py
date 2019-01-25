@@ -6,7 +6,7 @@
 # @Official Accounts：大数据学习废话集
 import glob
 import os
-from flask import Flask, render_template, send_from_directory, make_response, send_file
+from flask import Flask, render_template, send_from_directory, make_response, send_file, Response
 
 app = Flask(__name__)
 
@@ -26,8 +26,16 @@ def hello_world():
 
 @app.route("/download/files/<filename>", methods=['GET'])
 def download_file(filename):
-    fname = filename.encode('cp936')
-    return send_from_directory(MyFolder, fname, mimetype='application/octet-stream')
+    def send_chunk():  # 流式读取
+        store_path = './static/files/%s' % filename
+        with open(store_path, 'rb') as target_file:
+            while True:
+                chunk = target_file.read(20 * 1024 * 1024)  # 每次读取20M
+                if not chunk:
+                    break
+                yield chunk
+
+    return Response(send_chunk(), content_type='application/octet-stream')
 
 
 if __name__ == '__main__':
