@@ -13,3 +13,13 @@ Scripts
 /Scripts
 /tcl
 tcl
+config.ini
+dbs
+eggs
+twistd.pid
+venv
+*.ini
+/dbs
+/eggs
+*.pid
+/venv
