@@ -26,8 +26,8 @@ def hello_world():
 @app.route("/download/<filename>", methods=['GET'])
 def download_file(filename):
     # 需要知道2个参数, 第1个参数是本地目录的path, 第2个参数是文件名(带扩展名)
-    directory = os.getcwd()  # 假设在当前目录
-    dirpath = os.path.join(directory, 'static/files')
+    # directory = os.getcwd()  # 假设在当前目录
+    dirpath = '/root/flask/static/files'
     response = make_response(send_from_directory(dirpath, filename, as_attachment=True)) # 把当前数据封装成一个response
     response.headers["Content-Disposition"] = "attachment; filename={}".format(filename.encode('utf-8').decode('utf-8')) # 自定义headers
     return response
