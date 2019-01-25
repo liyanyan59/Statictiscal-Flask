@@ -19,9 +19,9 @@ def hello_world():
 # def download_file(filepath):
 #     # 此处的filepath是文件的路径，但是文件必须存储在static文件夹下， 比如images\test.jpg
 #     return app.send_static_file(filepath)
-@app.route("/download/<path:filename>")
+@app.route("/download/<filename>")
 def downloader(filename):
-    dirpath = os.path.join(app.root_path, 'flask/static/files')  # 这里是下在目录，从工程的根目录写起，比如你要下载static/js里面的js文件，这里就要写“static/js”
+    dirpath = os.path.join(app.root_path, 'static/files')  # 这里是下在目录，从工程的根目录写起，比如你要下载static/js里面的js文件，这里就要写“static/js”
     return send_from_directory(dirpath, filename, as_attachment=True)  # as_attachment=True 一定要写，不然会变成打开，而不是下载
 
 
