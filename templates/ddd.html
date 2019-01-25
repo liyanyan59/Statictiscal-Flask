@@ -49,9 +49,16 @@
 
 			let inputVal = inputBox.value;
             if(inputVal){
-                var reg=/productId=(\d+)/;
-                var result = inputVal.match(reg);
-                var res = result[0].split("=")[1]
+                var reg1=/productId=(\d+)/;
+                var reg2=/(\d+).html/;
+                var result = inputVal.match(reg1);
+                if(result[0]){
+                    var res = result[0].split("=")[1]
+                }else{
+                    var result = inputVal.match(reg2);
+                    var res = result[0].split(".")[0]
+                }
+
 				content.innerHTML = res;
 		        <!--window.open('http://124.173.70.94/files/'+result+'.zip');-->
 
