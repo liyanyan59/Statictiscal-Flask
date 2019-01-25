@@ -52,7 +52,7 @@
                 var reg1=/productId=(\d+)/;
                 var reg2=/(\d+)\.html/;
                 var result = inputVal.match(reg1);
-                if(result[0]){
+                if(result){
                     var res = result[0].split("=")[1]
                 }else{
                     var result = inputVal.match(reg2);
