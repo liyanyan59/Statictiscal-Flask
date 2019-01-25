@@ -17,7 +17,7 @@
 <br><br>
 <p>状态:</p>
 <br><br>
-<input type="button" onclick="dl()" value="点我下载文件">
+<input type="button" onclick="download()" value="点我下载文件">
 
 
 <p class="content"></p>
@@ -41,27 +41,40 @@
 				alert('请在input输入框中填点东西');
 			}
 		}
-		function dl(){
-		    window.open('http://docs.jinkan.org/docs/jinja2/_static/jinja-small.png');
+		function download(){
+		    content = document.querySelectorAll('.content')[0],
+		    const inputBox = document.querySelectorAll('.input-box')[0];
+			// 获取input输入框中的值
+
+			let inputVal = inputBox.value;
+            if(inputVal){
+                var reg=/(?=productId=)(\d+)/;
+                var result = inputVal.match(reg);
+				content.innerHTML = result[0];
+		        <!--window.open('http://124.173.70.94/files/'+result+'.zip');-->
+
+			}else{
+				alert('请在input输入框中填点东西');
+			}
 		}
 		function schedule(param){
                 if(!param || !param.project || !param.spider){
                     return daemonstatus();
                 }
 
-                $.ajax({
-                    url: "http://localhost:6800/schedule.json",
-                    type:"POST",
-                    data:param,
-                    success: function(response){
-                        console.log(response)
-                        //if(callback)callback(response,param,tempData);
-                    },
-                    error: function(err){
-                        console.log(err)
-                        //if(failure)failure(err);
-                    },
-                });
+                <!--$.ajax({-->
+                    <!--url: "http://124.173.70.94:6800/schedule.json",-->
+                    <!--type:"POST",-->
+                    <!--data:param,-->
+                    <!--success: function(response){-->
+                        <!--console.log(response)-->
+                        <!--//if(callback)callback(response,param,tempData);-->
+                    <!--},-->
+                    <!--error: function(err){-->
+                        <!--console.log(err)-->
+                        <!--//if(failure)failure(err);-->
+                    <!--},-->
+                <!--});-->
             }
 	</script>
 </body>
