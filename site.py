@@ -18,16 +18,10 @@ def hello_world():
 
 @app.route("/download/files/<filename>", methods=['GET'])
 def download_file(filename):
-    def send_chunk():  # 流式读取
-        store_path = './static/files/%s' % filename
-        with open(store_path, 'rb') as target_file:
-            while True:
-                chunk = target_file.read(20 * 1024 * 1024)  # 每次读取20M
-                if not chunk:
-                    break
-                yield chunk
-
-    return Response(send_chunk(), content_type='application/octet-stream')
+    with open('./upload/%s' % filename, 'rb') as target_file:  # 读取文件内容
+        data = target_file.read()
+    response = Response(data, content_type='application/octet-stream')  # 响应指明类型，写入内容
+    return response
 
 
 if __name__ == '__main__':
