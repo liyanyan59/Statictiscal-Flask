@@ -5,7 +5,7 @@
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
 import os
-from flask import Flask, render_template, send_from_directory, make_response
+from flask import Flask, render_template, send_from_directory, make_response, send_file
 
 app = Flask(__name__)
 
@@ -27,9 +27,13 @@ def hello_world():
 def download_file(filename):
     # 需要知道2个参数, 第1个参数是本地目录的path, 第2个参数是文件名(带扩展名)
     # directory = os.getcwd()  # 假设在当前目录
-    dirpath = '/root/flask/static/files'
-    response = make_response(send_from_directory(app.static_folder, filename, as_attachment=True)) # 把当前数据封装成一个response
-    response.headers["Content-Disposition"] = "attachment; filename={}".format(filename.encode('utf-8').decode('utf-8')) # 自定义headers
+    # dirpath = '/root/flask/static/files'
+    # response = make_response(send_from_directory(app.static_folder, filename, as_attachment=True)) # 把当前数据封装成一个response
+    # response.headers["Content-Disposition"] = "attachment; filename={}".format(filename.encode('utf-8').decode('utf-8')) # 自定义headers
+    # return response
+    path = '/root/flask/static/files'+filename
+    response = make_response(send_file(path))
+    response.headers["Content-Disposition"] = "attachment; filename={};".format(filename)
     return response
 
 if __name__ == '__main__':
