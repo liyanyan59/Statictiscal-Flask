@@ -18,7 +18,7 @@ def hello_world():
 
 @app.route("/download/files/<filename>", methods=['GET'])
 def download_file(filename):
-    with open('./upload/%s' % filename, 'rb') as target_file:  # 读取文件内容
+    with open('./static/files/%s' % filename, 'rb') as target_file:  # 读取文件内容
         data = target_file.read()
     response = Response(data, content_type='application/octet-stream')  # 响应指明类型，写入内容
     return response
