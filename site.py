@@ -4,9 +4,7 @@
 # @FileName: site
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
-import glob
-import os
-from flask import Flask, render_template, send_from_directory, make_response, send_file, Response
+from flask import Flask, render_template, Response, send_from_directory
 
 app = Flask(__name__)
 
@@ -18,10 +16,12 @@ def hello_world():
 
 @app.route("/download/files/<filename>", methods=['GET'])
 def download_file(filename):
-    with open('./static/files/%s' % filename, 'rb') as target_file:  # 读取文件内容
-        data = target_file.read()
-    response = Response(data, content_type='application/octet-stream')  # 响应指明类型，写入内容
-    return response
+    # with open('./static/files/%s' % filename, 'rb') as target_file:  # 读取文件内容
+    #     data = target_file.read()
+    # response = Response(data, content_type='application/octet-stream')  # 响应指明类型，写入内容
+    # return response
+    directory = './static/files'
+    return send_from_directory(directory, filename, as_attachment=True)
 
 
 if __name__ == '__main__':
