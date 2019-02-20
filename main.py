@@ -5,9 +5,10 @@
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
 from flask import Flask, render_template, Response, send_from_directory
+from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
-
+# application = app
 
 @app.route('/')
 def hello_world():
@@ -23,7 +24,8 @@ def download_file(filename):
     directory = './static/files'
     return send_from_directory(directory, filename, as_attachment=True)
 
+app.wsgi_app = ProxyFix(app.wsgi_app)
 
 if __name__ == '__main__':
     # app.run()
-    app.run('0.0.0.0')
+    app.run(host='0.0.0.0', port=8088)

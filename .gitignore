@@ -23,3 +23,8 @@ venv
 /eggs
 *.pid
 /venv
+/static/files
+static/files
+*.zip
+*.xlsx
+*.jpg
