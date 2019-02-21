@@ -4,7 +4,7 @@
 # @FileName: site
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
-from flask import Flask, render_template, Response, send_from_directory
+from flask import Flask, render_template, Response, send_from_directory, request
 from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
@@ -33,9 +33,10 @@ def get_status():
     name = './static/files/%s.t' % filename
     import os
     if os.path.isfile(name):
-        return jsonify({'status': True})  # running
+        return Response(json.dumps({'status': True}), mimetype='application/json')
+        # running
     else:
-        return jsonify({'status': False})
+        return Response(json.dumps({'status': False}), mimetype='application/json')
 
 
 if __name__ == '__main__':
