@@ -210,7 +210,7 @@
                 data:{"res":res},
                 success: function(response){
                     console.log(response);
-                    status = JSON.parse(response).status;
+                    status = response.status;
                     //if(callback)callback(response);
                 },
                 error: function(err){
