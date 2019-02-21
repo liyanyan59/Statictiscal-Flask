@@ -199,7 +199,7 @@
 				<!--alert('请在input输入框中填点东西');-->
 			<!--}-->
 
-			window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');
+			<!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
 		}
 
         function checkStatus (res){
@@ -216,7 +216,7 @@
                     }
                     else{
                         clearInterval(timeId);
-                        download(res);
+                        window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";
                     }
                     //if(callback)callback(response);
                 },
