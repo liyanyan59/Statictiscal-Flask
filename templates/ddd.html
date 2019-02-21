@@ -211,6 +211,13 @@
                 success: function(response){
                     console.log(response);
                     status = response.status;
+                    if(response.status){
+
+                    }
+                    else{
+                        clearInterval(timeId);
+                        download(res);
+                    }
                     //if(callback)callback(response);
                 },
                 error: function(err){
@@ -218,13 +225,7 @@
                     //if(failure)failure(err);
                 },
             });
-            if(status){
 
-            }
-            else{
-                clearInterval(timeId);
-                download(res);
-            }
         }
 
 	</script>
