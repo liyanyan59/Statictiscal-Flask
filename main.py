@@ -27,10 +27,11 @@ def download_file(filename):
     return send_from_directory(directory, filename, as_attachment=True)
 
 
-@app.route("/get/<filename>")
-def get_status(filename):
+@app.route("/get", methods=['POST'])
+def get_status():
+    filename = request.form['res']
     name = './static/files/%s.t' % filename
-    import os.path
+    import os
     if os.path.isfile(name):
         return jsonify({'status': True})  # running
     else:

@@ -204,8 +204,9 @@
         function checkStatus (res){
             var status = true;
             $.ajax({
-                url: "http://124.173.70.94:8088/get/"+res,//
-                type:"GET",
+                url: "http://124.173.70.94:8088/get",//
+                type:"POST",
+                data:{"res":res},
                 success: function(response){
                     console.log(response);
                     status = JSON.parse(response).status;
