@@ -218,12 +218,12 @@
                     //if(failure)failure(err);
                 },
             });
-            if(status==false){
-                clearInterval(timeId);
-                download(res);
+            if(status){
+
             }
             else{
-
+                clearInterval(timeId);
+                download(res);
             }
         }
 
