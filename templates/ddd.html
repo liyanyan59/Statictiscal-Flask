@@ -119,16 +119,16 @@
 <script>
 		function getInputVal(){
 			const inputBox = document.querySelectorAll('.input-box')[0],
-				  content = document.querySelectorAll('.content')[0],
-                  a= document.querySelectorAll('a')[0];
+				  content = document.querySelectorAll('.content')[0];
 			// 获取input输入框中的值
 
 			let inputVal = inputBox.value;
             let url = inputBox.value;
+            let remind = "爬虫正在运行,请不要关闭页面,爬虫运行完自动打开下载";
 			if(inputVal){
                 schedule({"project":"Statistics","spider":"statistic","url":inputVal});
 
-				content.innerHTML = "爬虫正在运行,请不要关闭页面,爬虫运行完自动打开下载";
+				content.innerHTML = remind;
 
                 var reg1=/productId=(\d+)/;
                 var reg2=/(\d+)\.html/;
@@ -140,17 +140,18 @@
                     var res = result[0].split(".")[0]
                 }
 
-                var status = true;
-                while(status){
-                    status = checkStatus (res);
-                }
-                download(res);
+                loadPage(res);
 
 			}else{
 				alert('请在input输入框中填点东西');
 			}
 		}
 
+        var timeId;
+	    var status;
+        function loadPage(res){
+            timeId=setInterval(checkStatus,5000,res);
+        }
 
 		function schedule(param){
 
@@ -202,7 +203,7 @@
 		}
 
         function checkStatus (res){
-            var status = true;
+            status = true;
             $.ajax({
                 url: "http://124.173.70.94:8088/get",//
                 type:"POST",
@@ -217,7 +218,13 @@
                     //if(failure)failure(err);
                 },
             });
-            return status;
+            if(status==false){
+                clearInterval(timeId);
+                download(res);
+            }
+            else{
+
+            }
         }
 
 	</script>
