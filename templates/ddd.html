@@ -124,7 +124,7 @@
 
 			let inputVal = inputBox.value;
             let url = inputBox.value;
-            let remind = "爬虫正在运行,请不要关闭页面,爬虫运行完自动打开下载";
+            let remind = "爬虫正在运行,请不要关闭页面,爬虫运行完会提示下载";
 			if(inputVal){
                 schedule({"project":"Statistics","spider":"statistic","url":inputVal});
 
@@ -216,8 +216,17 @@
                     }
                     else{
                         clearInterval(timeId);
-                        alert("爬虫已完成!");
-                        window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');
+                        content.innerHTML = res;
+                        var r=confirm("爬虫程序已完成!是否下载zip压缩文件?");
+                        if (r==true)
+                        {
+                            window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');
+                        }
+                        else
+                        {
+                            alert("取消下载");
+                        }
+                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
                         <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
 
                     }
