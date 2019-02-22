@@ -31,7 +31,7 @@ def download_file(filename):
 @app.route("/get", methods=['POST'])
 def get_status():
     filename = request.form['res']
-    name = './static/files/%s.t' % filename
+    name = './static/files/%s' % filename
     import os
     if os.path.isfile(name):
         return Response(json.dumps({'status': True}), mimetype='application/json')
@@ -45,7 +45,6 @@ def download_xlsx(filename):
 
     directory = './static/files/%s' % filename.split(".")[0]
     return send_from_directory(directory, filename, as_attachment=True)
-    pass
 
 
 @app.route("/xlsx")

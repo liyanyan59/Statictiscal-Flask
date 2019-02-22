@@ -46,7 +46,7 @@
 				var r=confirm("请确认该文件的爬虫程序已完成!");
                 if (r==true)
                 {
-                    window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
+                    checkStatus (res);
                 }
                 else
                 {
@@ -58,6 +58,35 @@
 				alert('请在input输入框中填点东西');
 			}
 		}
+		function checkStatus (res){
+            $.ajax({
+                url: "http://124.173.70.94:8088/get",//
+                type:"POST",
+                data:{"res":res+".xlsx"},
+                success: function(response){
+                    console.log(response);
+                    status = response.status;
+                    if(response.status){
+                        clearInterval(timeId);
+                        content.innerHTML = res;
+                        window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
+
+                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
+                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
+
+                    }
+                    else{
+                        alert("文件不存在,请先爬取数据!");
+                    }
+                    //if(callback)callback(response);
+                },
+                error: function(err){
+                    console.log(err)
+                    //if(failure)failure(err);
+                },
+            });
+
+        }
 
 	</script>
 </body>
