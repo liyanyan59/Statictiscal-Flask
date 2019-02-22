@@ -216,7 +216,10 @@
                     }
                     else{
                         clearInterval(timeId);
-                        window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";
+                        alert("爬虫已完成!");
+                        window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');
+                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
+
                     }
                     //if(callback)callback(response);
                 },
