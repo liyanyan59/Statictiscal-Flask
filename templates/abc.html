@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xlsx下载</title>
+</head>
+<!DOCTYPE html>
+
+<body>
+
+
+<br>
+输入网址:<br><br>
+<input class="input-box" type="text">
+<br><br>
+<br><br>
+<p></p>
+<br>
+<input type="button" onclick="download()" value="点我下载文件">
+
+
+<p class="content"></p>
+<script src="/static/jquery-3.3.1.js"></script>
+<script>
+
+		function download(){
+
+
+
+		    const content = document.querySelectorAll('.content')[0],
+		          inputBox = document.querySelectorAll('.input-box')[0];
+			// 获取input输入框中的值
+
+			let inputVal = inputBox.value;
+            if(inputVal){
+                var reg1=/productId=(\d+)/;
+                var reg2=/(\d+)\.html/;
+                var result = inputVal.match(reg1);
+                if(result){
+                    var res = result[0].split("=")[1]
+                }else{
+                    var result = inputVal.match(reg2);
+                    var res = result[0].split(".")[0]
+                }
+
+				content.innerHTML = res;
+				var r=confirm("请确认该文件的爬虫程序已完成!");
+                if (r==true)
+                {
+                    window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
+                }
+                else
+                {
+                    alert("取消下载");
+                }
+
+
+			}else{
+				alert('请在input输入框中填点东西');
+			}
+		}
+
+	</script>
+</body>
+</html>

@@ -40,6 +40,19 @@ def get_status():
         return Response(json.dumps({'status': False}), mimetype='application/json')
 
 
+@app.route("/download-xlsx/files/<filename>")
+def download_xlsx(filename):
+
+    directory = './static/files/%s' % filename.split(".")[0]
+    return send_from_directory(directory, filename, as_attachment=True)
+    pass
+
+
+@app.route("/xlsx")
+def xlsx():
+    return render_template('abc.html')
+
+
 if __name__ == '__main__':
     # app.run()
     app.run(host='0.0.0.0', port=8088, debug=True)
