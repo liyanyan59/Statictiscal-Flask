@@ -147,11 +147,7 @@
 			}
 		}
 
-        var timeId;
-	    var status;
-        function loadPage(res){
-            timeId=setInterval(checkStatus,5000,res);
-        }
+
 
 		function schedule(param){
 
@@ -169,8 +165,6 @@
                         //if(failure)failure(err);
                     },
                 });
-
-
         }
 
 
@@ -201,6 +195,13 @@
 
 			<!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
 		}
+
+
+        var timeId;
+	    var status;
+        function loadPage(res){
+            timeId=setInterval(checkStatus,8000,res);
+        }
 
         function checkStatus (res){
             status = true;

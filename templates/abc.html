@@ -46,7 +46,7 @@
 				var r=confirm("请确认该文件的爬虫程序已完成!");
                 if (r==true)
                 {
-                    checkStatus (res);
+                    checkFiles (res, inputVal);
                 }
                 else
                 {
@@ -58,7 +58,7 @@
 				alert('请在input输入框中填点东西');
 			}
 		}
-		function checkStatus (res){
+		function checkFiles (res, inputVal){
             $.ajax({
                 url: "http://124.173.70.94:8088/get",//
                 type:"POST",
@@ -76,7 +76,71 @@
 
                     }
                     else{
-                        alert("文件不存在,请先爬取数据!");
+                        var r=confirm("文件不存在,是否爬取数据?");
+                        if (r==true)
+                        {
+                            schedule({"project":"Statistics","spider":"statistic","url":inputVal});
+                        }
+                        else
+                        {
+                            alert("取消");
+                        }
+                    }
+                    //if(callback)callback(response);
+                },
+                error: function(err){
+                    console.log(err)
+                    //if(failure)failure(err);
+                },
+            });
+
+        }
+        function schedule(param){
+
+
+                $.ajax({
+                    url: "http://124.173.70.94:6800/schedule.json",
+                    type:"POST",
+                    data:param,
+                    success: function(response){
+                        console.log(response);
+                        //if(callback)callback(response,param,tempData);
+                    },
+                    error: function(err){
+                        console.log(err)
+                        //if(failure)failure(err);
+                    },
+                });
+        }
+        var timeId;
+        function loadPage(res){
+            timeId=setInterval(checkStatus,10000,res);
+        }
+        function checkStatus (res){
+            $.ajax({
+                url: "http://124.173.70.94:8088/get",//
+                type:"POST",
+                data:{"res":res+".zip"},
+                success: function(response){
+                    console.log(response);
+                    if(response.status){
+
+                    }
+                    else{
+                        clearInterval(timeId);
+                        content.innerHTML = res;
+                        var r=confirm("爬虫程序已完成!是否下载zip压缩文件?");
+                        if (r==true)
+                        {
+                            window.open('http://124.173.70.94:8088/download/files/'+res+'.xlsx');
+                        }
+                        else
+                        {
+                            alert("取消下载");
+                        }
+                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
+                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
+
                     }
                     //if(callback)callback(response);
                 },
