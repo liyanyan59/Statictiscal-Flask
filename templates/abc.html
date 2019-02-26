@@ -80,6 +80,7 @@
                         if (r==true)
                         {
                             schedule({"project":"Statistics","spider":"statistic","url":inputVal});
+                            loadPage(res);
                         }
                         else
                         {
@@ -129,7 +130,7 @@
                     else{
                         clearInterval(timeId);
                         content.innerHTML = res;
-                        var r=confirm("爬虫程序已完成!是否下载zip压缩文件?");
+                        var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
                             window.open('http://124.173.70.94:8088/download/files/'+res+'.xlsx');
