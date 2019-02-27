@@ -80,7 +80,7 @@
                         if (r==true)
                         {
                             schedule({"project":"Statistics","spider":"statistic","url":inputVal});
-                            loadPage(res);
+
                         }
                         else
                         {
@@ -105,6 +105,7 @@
                     data:param,
                     success: function(response){
                         console.log(response);
+                        loadPage(res);
                         //if(callback)callback(response,param,tempData);
                     },
                     error: function(err){
