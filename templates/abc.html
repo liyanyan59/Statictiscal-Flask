@@ -78,7 +78,7 @@
                         var r=confirm("文件不存在,是否爬取数据?");
                         if (r==true)
                         {
-                            schedule({"project":"Statistics","spider":"statistic","url":inputVal});
+                            schedule({"project":"Statistics","spider":"statistic","url":inputVal},res);
 
                         }
                         else
@@ -95,7 +95,7 @@
             });
 
         }
-        function schedule(param){
+        function schedule(param,res){
 
 
                 $.ajax({
