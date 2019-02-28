@@ -105,6 +105,8 @@
                     success: function(response){
                         console.log(response);
                         loadPage(res);
+                        if(response.status){alert("爬虫已开启,请等待(点确定)");}
+
                         //if(callback)callback(response,param,tempData);
                     },
                     error: function(err){
@@ -129,7 +131,6 @@
                     }
                     else{
                         clearInterval(timeId);
-                        content.innerHTML = res;
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
