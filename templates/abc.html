@@ -126,9 +126,6 @@
                 success: function(response){
                     console.log(response);
                     if(response.status){
-
-                    }
-                    else{
                         clearInterval(timeId);
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
@@ -141,6 +138,9 @@
                         }
                         <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
                         <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
+
+                    }
+                    else{
 
                     }
                     //if(callback)callback(response);
