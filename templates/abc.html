@@ -67,7 +67,9 @@
                 success: function(response){
                     console.log(response);
                     if(response.status){
-                        window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
+                        dl(res);
+
+                        <!--window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');-->
 
                         <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
                         <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
@@ -130,7 +132,8 @@
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
-                            window.location.href='http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx';
+                            dl(res);
+                            <!--window.location.href='http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx';-->
                         }
                         else
                         {
@@ -151,6 +154,13 @@
                 },
             });
 
+        }
+
+        function dl(res){
+            var a = document.createElement('a');
+            a.href = "http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx";
+            a.download = res".xlsx";
+            a.click();
         }
 
 	</script>
