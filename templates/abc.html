@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,9 +66,7 @@
                 data:{"res":res+".zip"},
                 success: function(response){
                     console.log(response);
-                    status = response.status;
                     if(response.status){
-                        clearInterval(timeId);
                         window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
 
                         <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
@@ -134,7 +133,7 @@
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
-                            window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');
+                            window.location.href='http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx';
                         }
                         else
                         {
