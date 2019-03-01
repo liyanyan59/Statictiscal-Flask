@@ -122,19 +122,19 @@
                 success: function(response){
                     console.log(response);
                     if(response.status){
+
+                    }
+                    else{
                         clearInterval(timeId);
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
-                            alert("取消下载");
+                            dl(res);
                         }
                         else
                         {
-                            dl(res);
+                            alert("取消下载");
                         }
-                    }
-                    else{
-
                     }
                     //if(callback)callback(response);
                 },
