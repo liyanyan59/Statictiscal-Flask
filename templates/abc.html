@@ -68,12 +68,6 @@
                     console.log(response);
                     if(response.status){
                         dl(res);
-
-                        <!--window.open('http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx');-->
-
-                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
-                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
-
                     }
                     else{
                         var r=confirm("文件不存在,是否爬取数据?");
@@ -124,7 +118,7 @@
             $.ajax({
                 url: "http://124.173.70.94:8088/get",//
                 type:"POST",
-                data:{"res":res+".zip"},
+                data:{"res":res+".t"},
                 success: function(response){
                     console.log(response);
                     if(response.status){
@@ -132,16 +126,12 @@
                         var r=confirm("爬虫程序已完成!是否下载文件?");
                         if (r==true)
                         {
-                            dl(res);
-                            <!--window.location.href='http://124.173.70.94:8088/download-xlsx/files/'+res+'.xlsx';-->
+                            alert("取消下载");
                         }
                         else
                         {
-                            alert("取消下载");
+                            dl(res);
                         }
-                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
-                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
-
                     }
                     else{
 
