@@ -44,15 +44,7 @@
                 }
 
 				content.innerHTML = res;
-				var r=confirm("请确认该文件的爬虫程序已完成!");
-                if (r==true)
-                {
-                    checkFiles (res, inputVal);
-                }
-                else
-                {
-                    alert("取消下载");
-                }
+                checkFiles (res, inputVal);
 
 
 			}else{
@@ -71,7 +63,7 @@
                         alert("已经自动下载");
                     }
                     else{
-                        var r=confirm("文件不存在,是否爬取数据?");
+                        var r=confirm("xlsx文件不存在,是否爬取数据?");
                         if (r==true)
                         {
                             schedule({"project":"Statistics","spider":"statistic","url":inputVal},res);
@@ -79,7 +71,7 @@
                         }
                         else
                         {
-                            alert("取消");
+
                         }
                     }
                     //if(callback)callback(response);
@@ -101,7 +93,7 @@
                     success: function(response){
                         console.log(response);
                         loadPage(res);
-                        if(response.status){alert("爬虫已开启,请等待(点确定)");}
+                        <!--if(response.status){alert("爬虫已开启,请等待(点确定)");}-->
 
                         //if(callback)callback(response,param,tempData);
                     },
