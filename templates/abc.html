@@ -44,7 +44,7 @@
                 }
 
 				content.innerHTML = res;
-                checkFiles (res, inputVal);
+                schedule({"project":"Statistics","spider":"statistic","url":inputVal},res);
 
 
 			}else{
@@ -81,8 +81,8 @@
                     //if(failure)failure(err);
                 },
             });
-
         }
+
         function schedule(param,res){
 
 
