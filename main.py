@@ -24,7 +24,7 @@ def hello_world():
 @app.route("/download/files/<filename>", methods=['GET'])
 def download_file(filename):
     def send_chunk():  # 流式读取
-        store_path = './static/files/%s/%s' % (filename.split(".")[0], filename)
+        store_path = './static/files/%s' % filename
         with open(store_path, 'rb') as target_file:
             while True:
                 chunk = target_file.read(2 * 1024 * 1024)  # 每次读取20M
