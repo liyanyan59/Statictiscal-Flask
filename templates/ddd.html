@@ -18,7 +18,7 @@
 <br><br>
 <p></p>
 <br><br>
-<!--<input type="button" onclick="download()" value="点我下载文件">-->
+
 
 
 <p class="content"></p>
@@ -31,7 +31,7 @@
 
 			let inputVal = inputBox.value;
             let url = inputBox.value;
-            let remind = "爬虫正在运行,请不要关闭页面,爬虫运行完会提示下载";
+            let remind = "爬虫正在运行,请不要关闭页面,爬虫运行完会自动下载";
 			if(inputVal){
                 schedule({"project":"Statistics","spider":"statistic","url":inputVal});
 
@@ -75,35 +75,6 @@
         }
 
 
-		function download(res){
-
-		    <!--const content = document.querySelectorAll('.content')[0],-->
-		          <!--inputBox = document.querySelectorAll('.input-box')[0];-->
-			<!--// 获取input输入框中的值-->
-
-			<!--let inputVal = inputBox.value;-->
-            <!--if(inputVal){-->
-                <!--var reg1=/productId=(\d+)/;-->
-                <!--var reg2=/(\d+)\.html/;-->
-                <!--var result = inputVal.match(reg1);-->
-                <!--if(result){-->
-                    <!--var res = result[0].split("=")[1]-->
-                <!--}else{-->
-                    <!--var result = inputVal.match(reg2);-->
-                    <!--var res = result[0].split(".")[0]-->
-                <!--}-->
-
-				<!--content.innerHTML = res;-->
-		        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
-
-			<!--}else{-->
-				<!--alert('请在input输入框中填点东西');-->
-			<!--}-->
-
-			<!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
-		}
-
-
         var timeId;
 	    var status;
         function loadPage(res){
@@ -124,18 +95,8 @@
                     }
                     else{
                         clearInterval(timeId);
-                        var r=confirm("爬虫程序已完成!是否下载zip压缩文件?");
-                        if (r==true)
-                        {
-                            window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');
-                        }
-                        else
-                        {
-                            alert("取消下载");
-                        }
-                        <!--window.open('http://124.173.70.94:8088/download/files/'+res+'.zip');-->
-                        <!--window.location.href="http://124.173.70.94:8088/download/files/'+res+'.zip";-->
-
+                        dl(res);
+                        alert("数据抓取完成，已经自动下载");
                     }
                     //if(callback)callback(response);
                 },
@@ -145,6 +106,13 @@
                 },
             });
 
+        }
+
+        function dl(res){
+            var a = document.createElement('a');
+            a.href = 'http://124.173.70.94:8088/download/files/'+res+'.zip';
+            a.download = res+".zip";
+            a.click();
         }
 
 	</script>
