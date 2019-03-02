@@ -107,7 +107,7 @@
         var timeId;
 	    var status;
         function loadPage(res){
-            timeId=setInterval(checkStatus,8000,res);
+            timeId=setInterval(checkStatus,10000,res);
         }
 
         function checkStatus (res){
@@ -115,7 +115,7 @@
             $.ajax({
                 url: "http://124.173.70.94:8088/get",//
                 type:"POST",
-                data:{"res":res+".zip"},
+                data:{"res":res+".t"},
                 success: function(response){
                     console.log(response);
                     status = response.status;
