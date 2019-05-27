@@ -7,9 +7,12 @@
 import os
 
 import time
-from flask import Flask, render_template, Response, send_from_directory, request
+from flask import Flask, render_template, Response, send_from_directory, request, jsonify
+from selenium import webdriver
 from werkzeug.contrib.fixers import ProxyFix
 import json
+
+from utils import get_url
 
 app = Flask(__name__)
 
@@ -60,6 +63,13 @@ def download_xlsx(filename):
 @app.route("/xlsx")
 def xlsx():
     return render_template('abc.html')
+
+
+@app.route('/urls')
+def urls():
+    infos = get_url()
+
+    return jsonify(infos)
 
 
 if __name__ == '__main__':
