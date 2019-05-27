@@ -14,9 +14,9 @@ def get_url():
     url = 'https://login.aliexpress.com/buyer.htm'
     # 配置option
     option = webdriver.ChromeOptions()
-    # option.add_argument("--headless")
+    option.add_argument("--headless")
     option.add_argument('--no-sandbox')
-    # option.add_argument('--disable-gpu')
+    option.add_argument('--disable-gpu')
     option.add_argument('--log-level=3')
     # 不显示图片
     prefs = {"profile.managed_default_content_settings.images": 2}
