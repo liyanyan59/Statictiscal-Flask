@@ -86,7 +86,7 @@ def urls():
     return render_template('www.html')
 
 
-@app.route('/urls/<keywords>')
+@app.route('/abc/<keywords>')
 def get_infos(keywords):
     infos = {}
 
