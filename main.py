@@ -8,11 +8,27 @@ import os
 
 import time
 from flask import Flask, render_template, Response, send_from_directory, request, jsonify
-from selenium import webdriver
 from werkzeug.contrib.fixers import ProxyFix
 import json
 
-from utils import get_url
+# from model import db
+from utils import get_url, url_parser
+
+
+# def create_app():
+#
+#     app = Flask(__name__)
+#
+#     app.wsgi_app = ProxyFix(app.wsgi_app)
+#
+#     # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@124.173.70.94:3306/suiyuan'
+#     #
+#     # # 数据库
+#     # db.init_app(app)
+#     # db.create_all(app=app)
+#     return app
+
+# app = create_app()
 
 app = Flask(__name__)
 
@@ -67,9 +83,24 @@ def xlsx():
 
 @app.route('/urls')
 def urls():
-    infos = get_url()
+    return render_template('www.html')
 
-    return jsonify(infos)
+
+@app.route('/urls/<keywords>')
+def get_infos(keywords):
+    infos = {}
+
+    if ";" in keywords:
+        keywords = keywords.split(";")
+    elif "；" in keywords:
+        keywords = keywords.split("；")
+    else:
+        keywords = [].append(keywords)
+
+    for keyword in keywords:
+        infos[keyword] = url_parser(keyword)
+
+    return render_template('table2.html', keywords=list(infos.keys()), items=list(infos.values()))
 
 
 if __name__ == '__main__':

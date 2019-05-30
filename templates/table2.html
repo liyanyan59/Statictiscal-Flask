@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <table border="1" width="90%">
+            <thead>
+                <tr>
+                   <td width = "100px">id</td>
+                    {% for keyword in keywords %}
+                   <td width = "100px">{{ keyword }}</td>
+                    {% endfor %}
+                </tr>
+            </thead>
+            {% for i in range(480) %}
+            <tr>
+                <td>{{ items[0][i]['id'] }}</td>
+                <td><a href="{{ items[0][i]['url'] }}">{{ items[0][i]['url'] }}</a></td>
+                <td><a href="{{ items[1][i]['url'] }}">{{ items[1][i]['url'] }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

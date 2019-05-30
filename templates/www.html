@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取keyword网址</title>
+</head>
+<!DOCTYPE html>
+
+<body>
+
+
+<br>
+输入keyword,以分号隔开:<br><br>
+<input class="input-box" type="text">
+<br><br>
+<input id="w" type="button" value="提交" onclick="getInputVal()">
+<br><br>
+<p></p>
+<br><br>
+
+
+
+<p class="content"></p>
+<script src="/static/jquery-3.3.1.js"></script>
+<script>
+		function getInputVal(){
+			const inputBox = document.querySelectorAll('.input-box')[0],
+				  content = document.querySelectorAll('.content')[0];
+			// 获取input输入框中的值
+
+			let inputVal = inputBox.value;
+			if(inputVal){
+                window.open('http://124.173.70.94:8088/urls/'+inputVal);
+
+
+			}else{
+				alert('请在input输入框中填点东西');
+			}
+		}
+
+
+	</script>
+</body>
+</html>
