@@ -22,7 +22,7 @@ def get_cookie():
     prefs = {"profile.managed_default_content_settings.images": 2}
     option.add_experimental_option("prefs", prefs)
 
-    driver = webdriver.Chrome(chrome_options=option)
+    driver = webdriver.Chrome(options=option)
 
 
     # driver.get(url)
@@ -46,8 +46,10 @@ def get_cookie():
     driver.set_page_load_timeout(15)
     try:
         cookies = driver.get_cookies()
+        print("qiuguo")
     except:
         cookies = driver.get_cookies()
+        print("不要伤害我了!!!")
 
     # url = 'https://www.aliexpress.com/wholesale?SearchText=iphone5'
 
