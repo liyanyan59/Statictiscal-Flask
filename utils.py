@@ -9,6 +9,8 @@ import requests
 from selenium import webdriver
 from lxml import etree
 
+from cookie import cookies
+
 
 def get_cookie():
     url = 'https://login.aliexpress.com'
@@ -77,8 +79,8 @@ def url_parser(keyword):
 
     # 反爬登录
     print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
-    cookies = get_cookie()
-    print(cookies)
+    # cookies = get_cookie()
+    # print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
 
