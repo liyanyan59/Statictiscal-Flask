@@ -98,7 +98,7 @@ def get_infos(keywords):
         keywords = [].append(keywords)
 
     for keyword in keywords:
-        infos[keyword] = url_parser(keyword)
+        infos[keyword] = url_parser(keyword, app)
 
     return render_template('table2.html', keywords=list(infos.keys()), items=list(infos.values()))
 

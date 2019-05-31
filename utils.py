@@ -10,8 +10,6 @@ import selenium
 from selenium import webdriver
 from lxml import etree
 
-from main import app
-
 
 def get_url():
     url = 'https://www.aliexpress.com'
@@ -77,7 +75,7 @@ def get_url():
     return infos
 
 
-def url_parser(keyword):
+def url_parser(keyword, app):
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
 
