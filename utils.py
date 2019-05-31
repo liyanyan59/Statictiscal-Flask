@@ -24,9 +24,10 @@ def get_cookie():
     option.add_experimental_option("prefs", prefs)
 
     driver = webdriver.Chrome(options=option)
-    driver.implicitly_wait(3)  # 最长加载时间
+
     driver.set_page_load_timeout(3)
 
+    print('你是真tm有毒啊啊啊啊')
     try:
         driver.get(url)
     except:
