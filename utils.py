@@ -23,21 +23,21 @@ def get_cookie():
     prefs = {"profile.managed_default_content_settings.images": 2}
     option.add_experimental_option("prefs", prefs)
 
-    driver = webdriver.Chrome(options=option)
+    driver = webdriver.Chrome(chrome_options=option)
 
     driver.set_page_load_timeout(3)
 
     print('你是真tm有毒啊啊啊啊')
     try:
         driver.get(url)
-    except:
+    except selenium.common.exceptions.TimeoutException:
         driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     print('你是真tm有毒')
 
     try:
         driver.get("https://login.aliexpress.com")
-    except:
+    except selenium.common.exceptions.TimeoutException:
         driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
