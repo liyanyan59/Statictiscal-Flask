@@ -47,6 +47,7 @@ def get_cookie():
     cookies = {}
     try:
         driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
+        cookies = driver.get_cookies()
     except selenium.common.exceptions.TimeoutException:
         driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
@@ -61,7 +62,7 @@ def get_cookie():
     #         driver.execute_script("arguments[0].click();", element)  # 关闭href为js的a标签
     #     except selenium.common.exceptions.NoSuchElementException:
     #         return {}
-    cookies = driver.get_cookies()
+
     driver.quit()
 
     return cookies
