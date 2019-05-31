@@ -36,6 +36,7 @@ def get_cookie():
     driver.switch_to.frame('alibaba-login-box')
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
+    cookies = {}
     try:
         driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
         cookies = driver.get_cookies()
@@ -53,6 +54,7 @@ def get_cookie():
     #         driver.execute_script("arguments[0].click();", element)  # 关闭href为js的a标签
     #     except selenium.common.exceptions.NoSuchElementException:
     #         return {}
+    driver.quit()
 
     return cookies
 
@@ -70,7 +72,6 @@ def url_parser(keyword):
     print('keyword:  %s' % keyword)
 
     res = session.get(start_url, params=data)
-
 
     # resp = scrapy.Selector(response=res)
     html = etree.HTML(res.content)
