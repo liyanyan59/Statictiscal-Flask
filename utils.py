@@ -4,12 +4,12 @@
 # @FileName: test
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
-import collections
-import time
 
 import requests
+import scrapy
 import selenium
 from selenium import webdriver
+from lxml import etree
 
 
 def get_url():
@@ -77,21 +77,20 @@ def get_url():
 
 
 def url_parser(keyword):
-    import scrapy
-    import requests
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
 
     res = requests.get(start_url, params=data)
 
-    resp = scrapy.Selector(response=res)
+    # resp = scrapy.Selector(response=res)
+    html = etree.HTML(res.content)
 
     infos = []
     index = 1
     _max = 480
     page = 1
     while len(infos) < _max:
-        url_list = resp.xpath('//a[@class="history-item product "]/@href').extract()
+        url_list = html.xpath('//a[@class="history-item product "]/@href')
 
         for url in url_list:
             # infos[str(index)] = url
@@ -102,7 +101,8 @@ def url_parser(keyword):
         page += 1
         data['page'] = page
         res = requests.get(start_url, params=data)
-        resp = scrapy.Selector(response=res)
+        # resp = scrapy.Selector(response=res)
+        html = etree.HTML(res.content)
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
     infos = infos[:_max]
@@ -111,4 +111,4 @@ def url_parser(keyword):
 
 
 if __name__ == "__main__":
-    print(get_url())
+    print(url_parser('cup;sugar'))
