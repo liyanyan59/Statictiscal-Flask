@@ -30,12 +30,14 @@ def get_cookie():
     try:
         driver.get(url)
     except:
-        pass
+        driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
+
+    print('你是真tm有毒')
 
     try:
         driver.get("https://login.aliexpress.com")
     except:
-        pass
+        driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
     # driver.find_element_by_xpath('//input[@class="search-button"]').submit()
@@ -45,6 +47,7 @@ def get_cookie():
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
     cookies = {}
+    print('你有毒吧')
     try:
         driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
         cookies = driver.get_cookies()
