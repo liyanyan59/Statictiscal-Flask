@@ -75,12 +75,11 @@ def get_url():
     return infos
 
 
-def url_parser(keyword, app):
+def url_parser(keyword):
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
-    print('出错辽1')
+
     res = requests.get(start_url, params=data)
-    print('出错辽2')
 
     # resp = scrapy.Selector(response=res)
     html = etree.HTML(res.content)
@@ -89,25 +88,23 @@ def url_parser(keyword, app):
     index = 1
     _max = 480
     page = 1
-    while len(infos) < _max:
+    while index <= _max:
         url_list = html.xpath('//a[@class="history-item product "]/@href')
 
         for url in url_list:
             # infos[str(index)] = url
             infos.append({'id': str(index), 'url': url})
             index += 1
-        print('出错辽3')
         # 下一页
         page += 1
         data['page'] = page
         res = requests.get(start_url, params=data)
         # resp = scrapy.Selector(response=res)
         html = etree.HTML(res.content)
-        print('出错辽4')
+        print('没有出错辽  %s' % page)
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
     infos = infos[:_max]
-    print('出错辽5')
 
     return infos
 

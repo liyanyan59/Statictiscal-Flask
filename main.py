@@ -100,7 +100,7 @@ def get_infos(keywords):
     print('这里没有错的吧')
 
     for keyword in keywords:
-        infos[keyword] = url_parser(keyword, app)
+        infos[keyword] = url_parser(keyword)
     print('are you kidding me?')
 
     return render_template('table2.html', keywords=list(infos.keys()), items=list(infos.values()))
