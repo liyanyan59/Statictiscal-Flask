@@ -43,7 +43,7 @@ def get_cookie():
     driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
     cookies = {}
     print('你有毒吧')
-    driver.set_page_load_timeout(5)
+    driver.set_page_load_timeout(15)
     try:
         cookies = driver.get_cookies()
     except:
