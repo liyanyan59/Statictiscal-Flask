@@ -12,7 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 import json
 
 # from model import db
-from utils import get_url, url_parser
+from utils import url_parser
 
 
 # def create_app():
