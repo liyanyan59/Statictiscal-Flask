@@ -27,17 +27,17 @@ def get_cookie():
 
     driver.set_page_load_timeout(3)
 
-    print('你是真tm有毒啊啊啊啊')
     try:
         driver.get(url)
     except selenium.common.exceptions.TimeoutException:
+        print('你是真tm有毒啊啊啊啊')
         driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
-    print('你是真tm有毒')
 
     try:
         driver.get("https://login.aliexpress.com")
     except selenium.common.exceptions.TimeoutException:
+        print('你是真tm有毒')
         driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
