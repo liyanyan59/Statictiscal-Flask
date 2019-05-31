@@ -12,7 +12,7 @@ from lxml import etree
 
 
 def get_cookie():
-    url = 'https://login.aliexpress.com'
+    url = 'https://www.aliexpress.com'
     # 配置option
     option = webdriver.ChromeOptions()
     option.add_argument("--headless")
@@ -24,14 +24,22 @@ def get_cookie():
     option.add_experimental_option("prefs", prefs)
 
     driver = webdriver.Chrome(options=option)
+    driver.implicitly_wait(3)  # 最长加载时间
+    driver.set_page_load_timeout(3)
 
-    driver.get(url)
+    try:
+        driver.get(url)
+    except:
+        pass
+
+    try:
+        driver.get("https://login.aliexpress.com")
+    except:
+        pass
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
     # driver.find_element_by_xpath('//input[@class="search-button"]').submit()
 
-    driver.implicitly_wait(5)  # 最长加载时间
-    driver.set_page_load_timeout(5)
     # 阿里反爬,登录的处理
     driver.switch_to.frame('alibaba-login-box')
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
