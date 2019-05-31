@@ -6,7 +6,6 @@
 # @Official Accounts：大数据学习废话集
 
 import requests
-import scrapy
 import selenium
 from selenium import webdriver
 from lxml import etree
