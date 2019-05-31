@@ -10,6 +10,8 @@ import selenium
 from selenium import webdriver
 from lxml import etree
 
+from main import app
+
 
 def get_url():
     url = 'https://www.aliexpress.com'
@@ -95,16 +97,18 @@ def url_parser(keyword):
             # infos[str(index)] = url
             infos.append({'id': str(index), 'url': url})
             index += 1
-
+        app.logger.debug('jie 里出错辽')
         # 下一页
         page += 1
         data['page'] = page
         res = requests.get(start_url, params=data)
         # resp = scrapy.Selector(response=res)
         html = etree.HTML(res.content)
+        app.logger.debug('la 里出错辽')
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
     infos = infos[:_max]
+    app.logger.debug('不可leng jie里出错⑧')
 
     return infos
 
