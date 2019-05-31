@@ -6,14 +6,12 @@
 # @Official Accounts：大数据学习废话集
 
 import requests
-import selenium
-import time
 from selenium import webdriver
 from lxml import etree
 
 
 def get_cookie():
-    url = 'https://www.aliexpress.com'
+    url = 'https://login.aliexpress.com'
     # 配置option
     option = webdriver.ChromeOptions()
     option.add_argument("--headless")
@@ -32,10 +30,8 @@ def get_cookie():
     # time.sleep(3)
     # driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
-    driver.get("https://login.aliexpress.com")
+    driver.get(url)
     print('你是真tm有毒')
-    time.sleep(5)
-    driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
     # driver.find_element_by_xpath('//input[@class="search-button"]').submit()
@@ -44,13 +40,14 @@ def get_cookie():
     driver.switch_to.frame('alibaba-login-box')
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
+    driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
     cookies = {}
     print('你有毒吧')
+    driver.set_page_load_timeout(5)
     try:
-        driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
         cookies = driver.get_cookies()
-    except selenium.common.exceptions.TimeoutException:
-        driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
+    except:
+        cookies = driver.get_cookies()
 
     # url = 'https://www.aliexpress.com/wholesale?SearchText=iphone5'
 
