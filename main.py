@@ -15,21 +15,6 @@ import json
 from utils import url_parser
 
 
-# def create_app():
-#
-#     app = Flask(__name__)
-#
-#     app.wsgi_app = ProxyFix(app.wsgi_app)
-#
-#     # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:123456@124.173.70.94:3306/suiyuan'
-#     #
-#     # # 数据库
-#     # db.init_app(app)
-#     # db.create_all(app=app)
-#     return app
-
-# app = create_app()
-
 app = Flask(__name__)
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
