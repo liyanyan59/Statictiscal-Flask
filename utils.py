@@ -74,6 +74,13 @@ def url_parser(keyword):
                }
     session.headers.update(headers)
 
+    # 反爬登录
+    print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
+    cookies = get_cookie()
+    print(cookies)
+    for cookie in cookies:
+        session.cookies.set(cookie['name'], cookie['value'])
+
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
 
@@ -89,17 +96,6 @@ def url_parser(keyword):
     _max = 480
     page = 1
     while index <= _max:
-        # 反爬登录
-        if 'login' in res.url:
-            print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
-            cookies = get_cookie()
-            print(cookies)
-            for cookie in cookies:
-                session.cookies.set(cookie['name'], cookie['value'])
-            # 登录过后再次请求
-            res = session.get(start_url, params=data)
-            html = etree.HTML(res.content)
-
         url_list = html.xpath('//a[@class="history-item product "]/@href')
 
         print(url_list)
