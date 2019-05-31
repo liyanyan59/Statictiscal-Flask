@@ -89,7 +89,7 @@ def urls():
 @app.route('/abc/<keywords>')
 def get_infos(keywords):
     infos = {}
-
+    print('开始辽')
     if ";" in keywords:
         keywords = keywords.split(";")
     elif "；" in keywords:
@@ -97,8 +97,11 @@ def get_infos(keywords):
     else:
         keywords = [].append(keywords)
 
+    print('这里没有错的吧')
+
     for keyword in keywords:
         infos[keyword] = url_parser(keyword, app)
+    print('are you kidding me?')
 
     return render_template('table2.html', keywords=list(infos.keys()), items=list(infos.values()))
 

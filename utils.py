@@ -78,8 +78,9 @@ def get_url():
 def url_parser(keyword, app):
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
-
+    print('出错辽1')
     res = requests.get(start_url, params=data)
+    print('出错辽2')
 
     # resp = scrapy.Selector(response=res)
     html = etree.HTML(res.content)
@@ -95,18 +96,18 @@ def url_parser(keyword, app):
             # infos[str(index)] = url
             infos.append({'id': str(index), 'url': url})
             index += 1
-        app.logger.debug('jie 里出错辽')
+        print('出错辽3')
         # 下一页
         page += 1
         data['page'] = page
         res = requests.get(start_url, params=data)
         # resp = scrapy.Selector(response=res)
         html = etree.HTML(res.content)
-        app.logger.debug('la 里出错辽')
+        print('出错辽4')
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
     infos = infos[:_max]
-    app.logger.debug('不可leng jie里出错⑧')
+    print('出错辽5')
 
     return infos
 
