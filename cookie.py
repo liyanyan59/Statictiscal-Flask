@@ -5,7 +5,7 @@
 # @Software: PyCharm
 # @Official Accounts：大数据学习废话集
 
-cookies = [{'domain': '.aliexpress.com',
+exist_cookies = [{'domain': '.aliexpress.com',
   'expiry': 3706793284.160809,
   'httpOnly': False,
   'name': 'ali_apache_track',

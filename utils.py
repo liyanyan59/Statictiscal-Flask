@@ -6,10 +6,11 @@
 # @Official Accounts：大数据学习废话集
 
 import requests
+import time
 from selenium import webdriver
 from lxml import etree
 
-from cookie import cookies
+from cookie import exist_cookies
 
 
 def get_cookie():
@@ -43,7 +44,7 @@ def get_cookie():
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
     driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
-    cookies = {}
+    cookies = exist_cookies
     # print('你有毒吧')
     driver.set_page_load_timeout(15)
     try:
@@ -79,7 +80,7 @@ def url_parser(keyword):
 
     # 反爬登录
     # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
-    # cookies = get_cookie()
+    cookies = get_cookie()
     print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
@@ -99,6 +100,7 @@ def url_parser(keyword):
     _max = 480
     page = 1
     while index <= _max:
+        time.sleep(5)
         url_list = html.xpath('//a[@class="history-item product "]/@href')
 
         print(url_list)
