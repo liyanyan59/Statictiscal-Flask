@@ -10,7 +10,7 @@ import time
 from selenium import webdriver
 from lxml import etree
 
-from cookie import exist_cookies
+from cookie import exist_cookies, exist_cookies2
 
 
 def get_cookie():
@@ -80,8 +80,9 @@ def url_parser(keyword):
 
     # 反爬登录
     # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
-    cookies = get_cookie()
-    print(cookies)
+    # cookies = get_cookie()
+    cookies = exist_cookies2
+    # print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
 
