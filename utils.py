@@ -45,14 +45,16 @@ def get_cookie():
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
     driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
     cookies = exist_cookies2
-    # print('你有毒吧')
+    print('你有毒吧')
     driver.set_page_load_timeout(10)
     try:
         cookies = driver.get_cookies()
-        # print("qiuguo")
+        print("qiuguo")
+        print(cookies)
     except:
         cookies = driver.get_cookies()
-        # print("不要伤害我了!!!")
+        print("不要伤害我了!!!")
+
 
     # url = 'https://www.aliexpress.com/wholesale?SearchText=iphone5'
 
@@ -82,7 +84,7 @@ def url_parser(keyword):
     # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
     cookies, driver = get_cookie()
     # cookies = exist_cookies2
-    # print(cookies)
+    print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
 
