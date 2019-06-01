@@ -44,9 +44,9 @@ def get_cookie():
     driver.find_element_by_xpath('//input[@id="fm-login-id"]').send_keys("1024407342@qq.com")
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
     driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
-    cookies = exist_cookies
+    cookies = exist_cookies2
     # print('你有毒吧')
-    driver.set_page_load_timeout(15)
+    driver.set_page_load_timeout(10)
     try:
         cookies = driver.get_cookies()
         # print("qiuguo")
@@ -66,9 +66,9 @@ def get_cookie():
     #     except selenium.common.exceptions.NoSuchElementException:
     #         return {}
 
-    driver.quit()
+    # driver.quit()
 
-    return cookies
+    return cookies, driver
 
 
 def url_parser(keyword):
@@ -80,8 +80,8 @@ def url_parser(keyword):
 
     # 反爬登录
     # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
-    # cookies = get_cookie()
-    cookies = exist_cookies2
+    cookies, driver = get_cookie()
+    # cookies = exist_cookies2
     # print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
@@ -119,6 +119,7 @@ def url_parser(keyword):
         print('没有出错辽咩  %s' % page)
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
+    driver.quit()
     infos = infos[:_max]
 
     return infos
