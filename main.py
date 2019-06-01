@@ -74,7 +74,7 @@ def urls():
 @app.route('/abc/<keywords>')
 def get_infos(keywords):
     infos = {}
-    print('开始辽')
+    # print('开始辽')
     if ";" in keywords:
         keywords = keywords.split(";")
     elif "；" in keywords:

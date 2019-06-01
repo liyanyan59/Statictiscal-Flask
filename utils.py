@@ -33,7 +33,7 @@ def get_cookie():
     # driver.execute_script('window.stop ? window.stop() : document.execCommand("Stop");')
 
     driver.get(url)
-    print('你是真tm有毒')
+    # print('你是真tm有毒')
 
     # driver.find_element_by_xpath('//input[@name="SearchText"]').send_keys("iphone7")
     # driver.find_element_by_xpath('//input[@class="search-button"]').submit()
@@ -44,14 +44,14 @@ def get_cookie():
     driver.find_element_by_xpath('//input[@type="password"]').send_keys('123789')
     driver.find_element_by_xpath('//button[@class="fm-button fm-submit password-login"]').click()
     cookies = {}
-    print('你有毒吧')
+    # print('你有毒吧')
     driver.set_page_load_timeout(15)
     try:
         cookies = driver.get_cookies()
-        print("qiuguo")
+        # print("qiuguo")
     except:
         cookies = driver.get_cookies()
-        print("不要伤害我了!!!")
+        # print("不要伤害我了!!!")
 
     # url = 'https://www.aliexpress.com/wholesale?SearchText=iphone5'
 
@@ -78,16 +78,16 @@ def url_parser(keyword):
     session.headers.update(headers)
 
     # 反爬登录
-    print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
+    # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
     # cookies = get_cookie()
-    # print(cookies)
+    print(cookies)
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
 
     start_url = 'https://www.aliexpress.com/wholesale'
     data = {'SearchText': '%s' % keyword, 'page': '1', 'ie': 'utf8', 'g': 'y'}
 
-    print('keyword:  %s' % keyword)
+    # print('keyword:  %s' % keyword)
 
     res = session.get(start_url, params=data)
 
