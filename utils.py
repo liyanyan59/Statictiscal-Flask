@@ -10,6 +10,7 @@ import time
 from selenium import webdriver
 from lxml import etree
 
+from AliExpress.browser import Browser
 from cookie import exist_cookies, exist_cookies2
 
 
@@ -73,15 +74,16 @@ def get_cookie():
     return cookies, driver
 
 
-def url_parser(keyword):
+def url_parser0(keyword):
     session = requests.Session()
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 "
-                             "(KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36"
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
+                             "AppleWebKit/537.36 (KHTML, like Gecko) "
+                             "Chrome/74.0.3702.0 "
+                             "Safari/537.36"
                }
     session.headers.update(headers)
 
     # 反爬登录
-    # print('这登录是什么鬼  fhjdhfkjnkjjfkjk#$%TY*&')
     cookies, driver = get_cookie()
     # cookies = exist_cookies2
     print(cookies)
@@ -118,12 +120,20 @@ def url_parser(keyword):
         res = session.get(start_url, params=data)
         # resp = scrapy.Selector(response=res)
         html = etree.HTML(res.content)
+        if page > 17:
+
+            break
         print('没有出错辽咩  %s' % page)
 
     # infos = {k: infos[k] for k in list(infos.keys())[:_max]}
     driver.quit()
     infos = infos[:_max]
 
+    return infos
+
+
+def url_parser(keyword, browser):
+    infos = browser.get_details(keyword)
     return infos
 
 

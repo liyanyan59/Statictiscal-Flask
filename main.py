@@ -12,6 +12,7 @@ from werkzeug.contrib.fixers import ProxyFix
 import json
 
 # from model import db
+from AliExpress.browser import Browser
 from utils import url_parser
 
 
@@ -82,12 +83,15 @@ def get_infos(keywords):
     else:
         keywords = [].append(keywords)
 
-    print('这里没有错的吧')
+    # print('这里没有错的吧')
+
+    browser = Browser()
 
     for keyword in keywords:
-        infos[keyword] = url_parser(keyword)
-    print('are you kidding me?')
+        infos[keyword] = browser.get_details(keyword)
+    # print('are you kidding me?')
 
+    browser.close()
     return render_template('table2.html', keywords=list(infos.keys()), items=list(infos.values()))
 
 
