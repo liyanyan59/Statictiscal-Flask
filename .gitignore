@@ -1,5 +1,4 @@
 # cat .gitignore
-__pycache__/
 *.xml
 *.iml
 .idea
@@ -30,6 +29,3 @@ static/files
 *.xlsx
 *.jpg
 
-__pycache__/
-__pycache__
-/__pycache__
